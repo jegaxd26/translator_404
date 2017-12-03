@@ -1,8 +1,8 @@
 # Translator404
 
-Tested on :
-Erlang/OTP 20 [erts-9.1]
-Elixir 1.5.2
+Tested on :  
+Erlang/OTP 20 [erts-9.1]  
+Elixir 1.5.2  
 
 Cli testing performed with https://github.com/websockets/wscat
 
