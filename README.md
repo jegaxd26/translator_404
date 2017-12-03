@@ -1,18 +1,19 @@
 # Translator404
 
-To start your Phoenix app:
+Tested on :  
+Erlang/OTP 20 [erts-9.1]  
+Elixir 1.5.2  
 
+Cli testing performed with https://github.com/websockets/wscat
+
+Usage :
   * Install dependencies with `mix deps.get`
+  * Run tests with `mix test`
   * Start Phoenix endpoint with `mix phoenix.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+The socket will be accessible via ws://localhost:4000/socket/websocket
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Connect to socket :  
+`{"topic":"translator","event":"phx_join","payload":{},"ref":"1"}`  
+Communicate with socket :  
+`{"topic":"translator","event":"message","payload":{"message":"кот"},"ref":"2"}`  
