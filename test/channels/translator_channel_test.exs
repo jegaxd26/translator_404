@@ -24,8 +24,8 @@ defmodule Translator404.TranslatorChannelTest do
     assert_reply(ref, :error, %{}, 5000)
   end
 
-  test "translated message id broadcasted to all listeners", %{socket: socket} do
-    ref = push(socket, "message", %{"message" => "красный стол"})
+  test "translated message is broadcasted to all listeners", %{socket: socket} do
+    push(socket, "message", %{"message" => "красный стол"})
     assert_broadcast("message",%{"eng_message" => "the red table"},5000)
   end
 

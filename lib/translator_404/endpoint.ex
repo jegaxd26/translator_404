@@ -1,7 +1,7 @@
 defmodule Translator404.Endpoint do
   use Phoenix.Endpoint, otp_app: :translator_404
 
-  socket "/socket", Translator404.TranslatorChannel
+  socket "/socket", Translator404.TranslatorSocket
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

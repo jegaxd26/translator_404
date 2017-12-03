@@ -1,12 +1,11 @@
 defmodule Translator404.TranslatorSocket do
   use Phoenix.Socket
   
-  channel("translator:*", Translator404.TranslatorChannel)
-  
-  transport(:websocket, Phoenix.Transports.WebSocket)
+  channel("translator", Translator404.TranslatorChannel)
+
+  transport(:websocket, Phoenix.Transports.WebSocket, timeout: 60_000)
   
   def connect(_params,socket) do
-    IO.puts("Connected")
     {:ok, socket}
   end
 
