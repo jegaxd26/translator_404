@@ -8,6 +8,7 @@ Cli testing performed with https://github.com/websockets/wscat
 
 Usage :
   * Install dependencies with `mix deps.get`
+  * Run tests with `mix test`
   * Start Phoenix endpoint with `mix phoenix.server`
 
 The socket will be accessible via ws://localhost:4000/socket/websocket
