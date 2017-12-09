@@ -12,11 +12,13 @@ defmodule Translator404.TranslatorChannel do
     if String.length(message)>280 do
       {:reply, :error, socket}
     else
-      # For this simple case it would actually be more straightforward to make api calls right here but
-      # this might aswell be part of the test
-      send(:translator, {self(), :translate, message, &Phoenix.Channel.broadcast(socket,"message", %{"eng_message"=>&1})})
-      
+      send(:translator, {self(),:translate, message})
       {:noreply, socket}
     end
+  end
+
+  def handle_info({:translated, eng_message}, socket) do
+    Phoenix.Channel.broadcast(socket,"message", %{"eng_message"=>eng_message})
+    {:noreply, socket}
   end
 end

@@ -20,13 +20,13 @@ defmodule Translator404.Translator do
 
   defp loop(api,api_key) do
     receive do
-      {from, :translate, message, callback}->
+      {from,:translate,message} ->
         url = "#{api}?key=#{api_key}&text=#{URI.encode(message)}&lang=ru-en&format=plain"
         case HTTPoison.get(url) do
           {:ok, %{status_code: 200, body: body}} ->
             req = Poison.decode!(body)
             # For some reason the translated text is returned in an array. Maybe the api permits text parameter to be an array?
-            callback.(hd(req["text"]))
+            send(from, {:translated, hd(req["text"])})
             true -> {:error}
         end
         loop(api,api_key)
