@@ -1,5 +1,6 @@
 defmodule Translator404.TranslatorChannel do
   use Phoenix.Channel
+  alias Translator404.Translator
   ## Channels
 
   def join("translator", payload, socket) do
@@ -12,13 +13,15 @@ defmodule Translator404.TranslatorChannel do
     if String.length(message)>280 do
       {:reply, :error, socket}
     else
-      send(:translator, {self(),:translate, message})
+      # send(:translator, {self(),:translate, message})
+      Translator.translate(self(),message)
+      
       {:noreply, socket}
     end
   end
 
   def handle_info({:translated, eng_message}, socket) do
-    Phoenix.Channel.broadcast(socket,"message", %{"eng_message"=>eng_message})
+    broadcast(socket,"message", %{"eng_message"=>eng_message})
     {:noreply, socket}
   end
 end

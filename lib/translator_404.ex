@@ -15,7 +15,7 @@ defmodule Translator404 do
       supervisor(Translator404.Endpoint, []),
       # Start your own worker by calling: Translator404.Worker.start_link(arg1, arg2, arg3)
       # worker(Translator404.Worker, [arg1, arg2, arg3]),
-      supervisor(Translator404.Translator, [yandex_api,yandex_api_key])
+      worker(Translator404.Translator, [yandex_api,yandex_api_key])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
