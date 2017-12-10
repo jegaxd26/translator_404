@@ -7,15 +7,13 @@ defmodule Translator404 do
     import Supervisor.Spec
 
     # Define workers and child supervisors to be supervised
-    yandex_api = Application.get_env(:translator_404, Translator404.Endpoint)[:yandex_api]
-    yandex_api_key = Application.get_env(:translator_404, Translator404.Endpoint)[:yandex_api_key]
     
     children = [
       # Start the endpoint when the application starts
       supervisor(Translator404.Endpoint, []),
       # Start your own worker by calling: Translator404.Worker.start_link(arg1, arg2, arg3)
       # worker(Translator404.Worker, [arg1, arg2, arg3]),
-      worker(Translator404.Translator, [yandex_api,yandex_api_key])
+      supervisor(Translator404.Translator.Supervisor, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

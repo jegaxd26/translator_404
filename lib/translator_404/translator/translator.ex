@@ -12,10 +12,7 @@ defmodule Translator404.Translator do
   ## Gen server api  
   def start_link(yandex_api,yandex_api_key) do
     s = %{api: yandex_api, api_key: yandex_api_key}
-    {:ok, pid} = GenServer.start_link(__MODULE__,s, name: Translator)
-    # There might be a more elegant way to register a process by passing the name to supervisor somehow
-    # Process.register(pid, :translator)
-    {:ok, pid}
+    GenServer.start_link(__MODULE__,s, name: Translator)
     
   end
 
@@ -23,15 +20,6 @@ defmodule Translator404.Translator do
     {:ok,s}
   end
   
-  #def child_spec(opts) do
-  #    %{
-  #      id: __MODULE__,
-  #      start: {__MODULE__, :start_link, [opts]},
-  #      type: :worker,
-  #      restart: :permanent,
-  #      shutdown: 500
-  #    }
-  #end
 
   def handle_cast({:translate, from, message},s) do
     url = "#{s.api}?key=#{s.api_key}&text=#{URI.encode(message)}&lang=ru-en&format=plain"

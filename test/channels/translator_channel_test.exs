@@ -1,5 +1,5 @@
 defmodule Translator404.TranslatorChannelTest do
-  use Translator404.ChannelCase
+  use Translator404.ChannelCase, async: true
 
   alias Translator404.TranslatorChannel
 

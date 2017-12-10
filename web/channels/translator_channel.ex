@@ -13,9 +13,10 @@ defmodule Translator404.TranslatorChannel do
     if String.length(message)>280 do
       {:reply, :error, socket}
     else
-      # send(:translator, {self(),:translate, message})
+      ## We could implement translate as gen_server call instead of cast and make this call wrapped in
+      ## a Task here under, this would awoid us sending self() and implementing an handle_info,
+      ## but I find this aproach more elegant
       Translator.translate(self(),message)
-      
       {:noreply, socket}
     end
   end
@@ -24,4 +25,5 @@ defmodule Translator404.TranslatorChannel do
     broadcast(socket,"message", %{"eng_message"=>eng_message})
     {:noreply, socket}
   end
+
 end
