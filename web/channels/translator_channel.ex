@@ -3,7 +3,7 @@ defmodule Translator404.TranslatorChannel do
   alias Translator404.Translator
   ## Channels
 
-  def join("translator", payload, socket) do
+  def join("translator", _payload, socket) do
     {:ok, socket}
   end
 
