@@ -6,8 +6,9 @@ defmodule Translator404.Translator.Supervisor do
   end
   
   def init(_opts) do
-    yandex_api = Application.get_env(:translator_404, Translator404.Endpoint)[:yandex_api]
-    yandex_api_key = Application.get_env(:translator_404, Translator404.Endpoint)[:yandex_api_key]
+    config = Application.get_env(:translator_404, Translator404.Endpoint)
+    yandex_api = config[:yandex_api]
+    yandex_api_key = config[:yandex_api_key]
     
     children = [
       worker(Translator404.Translator, [{yandex_api,yandex_api_key}], restart: :transient)
